@@ -1,0 +1,10 @@
+a.icon-button {
+  svg {
+    height: 16px;
+    vertical-align: middle;
+    fill: var(--theme-main-color);
+  }
+  &:hover svg {
+    fill: #f5f7f6;
+  }
+}

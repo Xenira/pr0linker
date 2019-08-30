@@ -1,0 +1,26 @@
+.select-container {
+    width: fit-content;
+    height: fit-content;
+
+    &>select {
+        margin: 0;
+        border: 0;
+        background-color: #1b1e1f;
+        color: #bbb;
+        outline: none;
+        padding: 7px;
+        padding-right: 23px;
+        border-radius: 0;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    &>svg {
+        height: 16px;
+        fill: #f5f7f6;
+        vertical-align: middle;
+        pointer-events: none;
+        position: relative;
+        right: 22px;
+    }
+}

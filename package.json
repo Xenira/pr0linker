@@ -1,0 +1,38 @@
+{
+  "name": "pr0tagger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Xenira",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@types/jquery": "^3.3.31",
+    "@types/node": "^12.7.2",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.2.2",
+    "eslint-loader": "^3.0.0",
+    "html-loader": "^0.5.5",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.3",
+    "webpack-auto-inject-version": "^1.2.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dashboard": "^3.1.0"
+  },
+  "dependencies": {
+    "dompurify": "^1.0.11",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "start": "webpack-dashboard -m -t \"pr0linker build\" -- webpack --mode development --watch"
+  }
+}

@@ -1,0 +1,10 @@
+// ==UserScript==
+// @name         pr0linker
+// @namespace    http://tampermonkey.net/
+// @version      {version}
+// @description  Manage lists of users to tag and automaticaly mention them under your posts.
+// @author       Xenira
+// @match        https://pr0gramm.com/*
+// @grant        none
+// @run-at       document-end
+// ==/UserScript==
