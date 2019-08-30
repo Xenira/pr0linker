@@ -44,7 +44,7 @@ module.exports = {
 				InjectAsComment: {
 					tag: fs.readFileSync(
 						path.resolve(__dirname, 'src/assets/tampermonkeyHeader.txt'), 'utf8'
-					),
+					) + '\n' + fs.readFileSync(path.resolve(__dirname, 'LICENSE'), 'utf8'),
 					dateFormat: 'dddd, mmmm dS, yyyy, h:MM:ss TT'
 				},
 				AutoIncreaseVersion: {

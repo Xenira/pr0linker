@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Xenira",
-  "license": "MIT",
+  "license": "Beerware",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@types/jquery": "^3.3.31",

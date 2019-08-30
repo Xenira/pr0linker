@@ -2,8 +2,9 @@
 // @name         pr0linker
 // @namespace    http://tampermonkey.net/
 // @version      {version}
-// @description  Manage lists of users to tag and automaticaly mention them under your posts.
+// @description  Verlinke Benutzer automatisch unter deinen Posts auf dem pr0gramm
 // @author       Xenira
+// @license      Beerware
 // @match        https://pr0gramm.com/*
 // @grant        none
 // @run-at       document-end
