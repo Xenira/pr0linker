@@ -3,9 +3,9 @@ import { sanitize } from 'dompurify';
 import { SETTINGS_EVENT_NAME } from './util/events';
 import { ISettings } from './model/settings';
 import { IUser } from './model/user';
+import SelectComponent from './components/select.component';
 
 import './styles/settings.scss';
-import { Renderer } from './renderer';
 
 const settingsTemplate = require('./templates/settings.html');
 const deleteIcon = require('./assets/icons/delete.svg');
@@ -15,9 +15,11 @@ export default class Settings {
 
 	settings: ISettings;
 
+	private listSelect: SelectComponent;
+
 	constructor() {
 		const storageItem = localStorage.getItem('pr0linkerSettings');
-		this.settings = storageItem ? JSON.parse(storageItem) : {
+		this.settings = storageItem ? JSON.parse(storageItem).settings : {
 			general: {},
 			lists: [{
 				name: 'Default',
@@ -45,18 +47,16 @@ export default class Settings {
 
 	loadSettingsPage(): void {
 		$('.pane.form-page').html(settingsTemplate);
-		this.populateLinkList();
-
+		this.listSelect = new SelectComponent({ key: '-1', value: 'Alle Verlinkungswünsche' });
+		console.log(this.listSelect);
+		$('#list-select-container').replaceWith(this.listSelect.container);
+		this.populateLinkList(this.listSelect);
 	}
 
-	populateLinkList(index?: number): void {
-		const select: JQuery<HTMLSelectElement> = $('#list-select');
-		Renderer.renderStyledSelect(select);
-		select.html('<option value="-1">Alle Verlinkungswünsche</option>');
-		this.settings.lists.forEach((list, i) => {
-			select.append(`<option value="${i}">${sanitize(`${list.name} (${list.users.length})`)}`);
-		});
-		select.change((e) => {
+	populateLinkList(select: SelectComponent, index = Number(this.listSelect.selectElement.val())): void {
+		select.setItems(this.settings.lists.map((list, i) => ({ key: i.toString(), value: `${list.name} (${list.users.length})` })));
+
+		select.selectElement.change((e) => {
 			const index = Number.parseInt(e.target.value, 10);
 			if (!Number.isInteger(index)) {
 				return;
@@ -64,12 +64,8 @@ export default class Settings {
 			this.renderLinks(index);
 		});
 
-		if (Number.isInteger(index)) {
-			select.val(index);
-			this.renderLinks(index);
-		} else {
-			this.renderLinks(-1);
-		}
+		select.selectElement.val(index);
+		this.renderLinks(index);
 	}
 
 	private renderLinks(index: number): void {
@@ -134,7 +130,7 @@ export default class Settings {
 			handle: sanitize(username),
 			registered: new Date().getTime()
 		});
-		this.populateLinkList(index);
+		this.populateLinkList(this.listSelect);
 	}
 
 	private deleteUserFromList(index: number, user: IUser, handle: string): void {
@@ -150,6 +146,6 @@ export default class Settings {
 		this.settings.lists.filter((_list, i) => index < 0 || index === i).forEach((list) => {
 			list.users = list.users.filter((u) => user.handle !== u.handle);
 		});
-		this.populateLinkList(index);
+		this.populateLinkList(this.listSelect);
 	}
 }
