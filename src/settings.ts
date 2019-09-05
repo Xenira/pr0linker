@@ -113,7 +113,10 @@ export default class Settings {
 			const addUserButton = $(document.createElement('a'));
 			addUserButton.addClass('icon-button');
 			addUserButton.text('Benutzer Hinzufügen');
-			addUserButton.click(() => this.addUserToList(index, addUserInput.val().toString()));
+			addUserButton.click(() => {
+				this.addUserToList(index, addUserInput.val().toString());
+				this.renderLinks();
+			});
 			linkList.append(addUserInput, addUserButton);
 		}
 	}
@@ -132,8 +135,6 @@ export default class Settings {
 			handle: sanitize(username),
 			registered: new Date().getTime()
 		});
-		this.populateLinkList(this.listSelect);
-		this.renderLinks();
 	}
 
 	private deleteUserFromList(index: number, user: IUser, handle: string): void {
