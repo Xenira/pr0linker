@@ -48,15 +48,7 @@ export default class Settings {
 	loadSettingsPage(): void {
 		$('.pane.form-page').html(settingsTemplate);
 		this.listSelect = new SelectComponent({ key: '-1', value: 'Alle Verlinkungswünsche' });
-		console.log(this.listSelect);
-		$('#list-select-container').replaceWith(this.listSelect.container);
-		this.populateLinkList(this.listSelect);
-	}
-
-	populateLinkList(select: SelectComponent, index = Number(this.listSelect.selectElement.val())): void {
-		select.setItems(this.settings.lists.map((list, i) => ({ key: i.toString(), value: `${list.name} (${list.users.length})` })));
-
-		select.selectElement.change((e) => {
+		this.listSelect.selectElement.change((e) => {
 			const index = Number.parseInt(e.target.value, 10);
 			if (!Number.isInteger(index)) {
 				return;
@@ -64,11 +56,21 @@ export default class Settings {
 			this.renderLinks(index);
 		});
 
-		select.selectElement.val(index);
-		this.renderLinks(index);
+		$('#list-select-container').replaceWith(this.listSelect.container);
+		this.populateLinkList(this.listSelect);
+		this.renderLinks();
 	}
 
-	private renderLinks(index: number): void {
+	populateLinkList(select: SelectComponent, index?: number): void {
+		if (index === undefined) {
+			index = Number(select.selectElement.val());
+		}
+		select.setItems(this.settings.lists.map((list, i) => ({ key: i.toString(), value: `${list.name} (${list.users.length})` })));
+
+		select.selectElement.val(index);
+	}
+
+	private renderLinks(index = Number(this.listSelect.selectElement.val())): void {
 		const linkList = $('#link-users');
 		linkList.html('');
 
@@ -131,6 +133,7 @@ export default class Settings {
 			registered: new Date().getTime()
 		});
 		this.populateLinkList(this.listSelect);
+		this.renderLinks();
 	}
 
 	private deleteUserFromList(index: number, user: IUser, handle: string): void {
@@ -147,5 +150,6 @@ export default class Settings {
 			list.users = list.users.filter((u) => user.handle !== u.handle);
 		});
 		this.populateLinkList(this.listSelect);
+		this.renderLinks();
 	}
 }

@@ -26,6 +26,7 @@ export default class SelectComponent {
 
 		this.addItems(items);
 	}
+
 	addItems(items: ISelectOption[]): void {
 		items.forEach((i): JQuery<HTMLSelectElement> => this.selectElement.append(`<option value="${sanitize(i.key)}">${sanitize(i.value)}</option>`));
 	}
