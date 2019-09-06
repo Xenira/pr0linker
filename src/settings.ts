@@ -11,6 +11,10 @@ const settingsTemplate = require('./templates/settings.html');
 const deleteIcon = require('./assets/icons/delete.svg');
 const deleteAllIcon = require('./assets/icons/delete_forever.svg');
 
+const SETTINGS_PREFIX = 'pr0linkerSettings';
+const SETTINGS_LISTS = 'lists';
+const SETTINGS_GENERAL = 'general';
+
 export default class Settings {
 
 	settings: ISettings;
@@ -18,10 +22,9 @@ export default class Settings {
 	private listSelect: SelectComponent;
 
 	constructor() {
-		const storageItem = localStorage.getItem('pr0linkerSettings');
-		this.settings = storageItem ? JSON.parse(storageItem).settings : {
-			general: {},
-			lists: [{
+		this.settings = {
+			general: JSON.parse(localStorage.getItem(`${SETTINGS_PREFIX}.${SETTINGS_GENERAL}`)) || {},
+			lists: JSON.parse(localStorage.getItem(`${SETTINGS_PREFIX}.${SETTINGS_LISTS}`)) || [{
 				name: 'Default',
 				key: 'default',
 				users: [{
@@ -95,7 +98,11 @@ export default class Settings {
 
 				const deleteLink = $(document.createElement('a'));
 				deleteLink.addClass('icon-button');
-				deleteLink.click(() => this.deleteUserFromList(index, user, sanitizedUserHandle));
+				deleteLink.click(() => {
+					this.deleteUserFromList(index, user, sanitizedUserHandle);
+					this.populateLinkList(this.listSelect);
+					this.renderLinks();
+				});
 				deleteLink.append(index < 0 ? deleteAllIcon : deleteIcon);
 
 				listItem.append(deleteLink);
@@ -121,7 +128,7 @@ export default class Settings {
 		}
 	}
 
-	addUserToList(index: number, username: string): void {
+	public addUserToList(index: number, username: string): void {
 		if (index >= this.settings.lists.length) {
 			return;
 		}
@@ -135,9 +142,10 @@ export default class Settings {
 			handle: sanitize(username),
 			registered: new Date().getTime()
 		});
+		this.saveLists();
 	}
 
-	private deleteUserFromList(index: number, user: IUser, handle: string): void {
+	public deleteUserFromList(index: number, user: IUser, handle: string): void {
 		if (index < 0 && !confirm(`Möchtest du ${handle} wirklich aus ALLEN Listen entfernen?`)) {
 			return;
 		}
@@ -150,7 +158,10 @@ export default class Settings {
 		this.settings.lists.filter((_list, i) => index < 0 || index === i).forEach((list) => {
 			list.users = list.users.filter((u) => user.handle !== u.handle);
 		});
-		this.populateLinkList(this.listSelect);
-		this.renderLinks();
+		this.saveLists();
+	}
+
+	public saveLists(): void {
+		window.localStorage.setItem(`${SETTINGS_PREFIX}.${SETTINGS_LISTS}`, JSON.stringify(this.settings.lists));
 	}
 }

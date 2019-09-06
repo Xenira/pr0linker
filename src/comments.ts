@@ -32,8 +32,11 @@ export default class Comments {
 
 		$('body').append(overlay.replace('{{user}}', username));
 		$('#add-user-select-container').append(listSelect.container);
-		$('#overlay-target').click(() => $('#overlay').remove());
-		$('#add-user').click(() => this.addUserToList(Number(listSelect.selectElement.val()), username));
+		$('#overlay-target').click(() => $('#overlay.pr0linker').remove());
+		$('#add-user').click(() => {
+			this.addUserToList(Number(listSelect.selectElement.val()), username);
+			$('#overlay.pr0linker').remove();
+		});
 	}
 
 	addUserToList(index: number, username: string): void {
