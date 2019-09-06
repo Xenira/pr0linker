@@ -1,5 +1,8 @@
-Todos:
-	☐ Selects wieder als html einbinden
+Todos: 
+	☐ Benutzer von Profilseite hinzufügen / entfernen
+	☐ Benutzer von Kommentar entfernen
+	☐ Kommentarbutton unter OP posts von eigenem Benutzer einblenden.
+	☐ Add to new list
 	Tampermonkey:
 		☐ Valide update url einfügen
 
@@ -7,3 +10,6 @@ Ideen:
 	☐ Option um Werd0lf automatisch zu verlinken
 	☐ Bestätigungsnachricht mit anleitung zur automatischen abmeldung
 	☐ Automatische Abmeldung per pn
+
+Archive:
+  ✔ Selects wieder als html einbinden @done(19-09-06 17:19) @project(Todos)

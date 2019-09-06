@@ -5,9 +5,13 @@
 
 <h3>Deine Verlinkungslisten</h3>
 <p>
-	<input placeholder="Name" /> <a>Liste erstellen</a>
+	<input id="new-list-name" placeholder="Name" /> <a id="add-link-list">Liste erstellen</a>
 </p>
 <div id="list-select-container"></div>
+
+<div id="list-title">
+	<h4>Loading</h4>
+	<small>[ <a id="edit-list">Bearbeiten</a> | <a id="delete-list">Löschen</a> ]</small>
+</div>
 <ul id="link-users">
 </ul>
-<input id="save" type="submit" class="confirm" value="Speichern" />

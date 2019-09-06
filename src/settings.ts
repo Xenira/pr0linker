@@ -15,6 +15,9 @@ const SETTINGS_PREFIX = 'pr0linkerSettings';
 const SETTINGS_LISTS = 'lists';
 const SETTINGS_GENERAL = 'general';
 
+const RENAME_PROMPT = 'Gib den neuen namen für die liste {{name}} ein:';
+const DELETE_WARNING = 'Willst du die Liste {{name}} wirklich Löschen? Dies kann nicht rückgängig gemacht werden!';
+
 export default class Settings {
 
 	settings: ISettings;
@@ -59,6 +62,13 @@ export default class Settings {
 			this.renderLinks(index);
 		});
 
+		$('#add-link-list').click(() => {
+			this.addList(sanitize($('#new-list-name').val().toString().trim()));
+			$('#new-list-name').val('');
+			this.populateLinkList(this.listSelect, this.settings.lists.length - 1);
+			this.renderLinks(this.settings.lists.length - 1);
+		});
+
 		$('#list-select-container').replaceWith(this.listSelect.container);
 		this.populateLinkList(this.listSelect);
 		this.renderLinks();
@@ -79,8 +89,31 @@ export default class Settings {
 
 		const users: { [username: string]: IUser } = {};
 		if (index >= 0) {
+			$('#list-title').show();
+			$('#list-title > h4').text(this.settings.lists[index].name);
+			$('#edit-list').off('click').click(() => {
+				let name: string = prompt(RENAME_PROMPT.replace('{{name}}', this.settings.lists[index].name), this.settings.lists[index].name);
+				name = sanitize(name.trim());
+				if (!name || !name.length) {
+					return;
+				}
+
+				this.settings.lists[index].name = name;
+				this.saveLists();
+				this.populateLinkList(this.listSelect, index);
+				this.renderLinks(index);
+			});
+			$('#delete-list').off('click').click(() => {
+				if (!confirm(DELETE_WARNING.replace('{{name}}', this.settings.lists[index].name))) {
+					return;
+				}
+				this.deleteList(index);
+				this.populateLinkList(this.listSelect, this.settings.lists.length ? 0 : -1);
+				this.renderLinks(this.settings.lists.length ? 0 : -1);
+			});
 			this.settings.lists[index].users.forEach((u) => users[u.handle] = u);
 		} else {
+			$('#list-title').hide();
 			this.settings.lists.forEach((list) => {
 				list.users.forEach((u) => users[u.handle] = u);
 			});
@@ -111,7 +144,7 @@ export default class Settings {
 		}
 
 		if (!hasUsers) {
-			linkList.append('<span>Es sind keine Benutzer in dieser Liste.</span>');
+			linkList.append('<p>Es sind keine Benutzer in dieser Liste.</p>');
 		}
 
 		if (index >= 0) {
@@ -122,6 +155,7 @@ export default class Settings {
 			addUserButton.text('Benutzer Hinzufügen');
 			addUserButton.click(() => {
 				this.addUserToList(index, addUserInput.val().toString());
+				this.populateLinkList(this.listSelect);
 				this.renderLinks();
 			});
 			linkList.append(addUserInput, addUserButton);
@@ -158,6 +192,21 @@ export default class Settings {
 		this.settings.lists.filter((_list, i) => index < 0 || index === i).forEach((list) => {
 			list.users = list.users.filter((u) => user.handle !== u.handle);
 		});
+		this.saveLists();
+	}
+
+	public addList(name: string): void {
+		this.settings.lists.push({
+			name,
+			key: name.replace(/\W/g, ''),
+			users: []
+		});
+		this.saveLists();
+	}
+
+	public deleteList(index: number): void {
+		console.warn('List before delete:', this.settings.lists);
+		this.settings.lists.splice(index, 1);
 		this.saveLists();
 	}
 

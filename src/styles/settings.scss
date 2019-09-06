@@ -4,7 +4,18 @@ a.icon-button {
     vertical-align: middle;
     fill: var(--theme-main-color);
   }
+
   &:hover svg {
     fill: #f5f7f6;
+  }
+}
+
+#list-title {
+  small {
+    font-size: 10px;
+  }
+
+  &>h4 {
+    display: inline-block;
   }
 }
