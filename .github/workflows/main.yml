@@ -1,0 +1,22 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Build
+    - uses: actions/checkout@v1
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - uses: actions/upload-artifact@master
+      with:
+        name: pr0linker-build
+        path: dist/pr0linker.js
+      run: |
+        yarn install
+        yarn build
+      
