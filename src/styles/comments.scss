@@ -34,3 +34,15 @@ ul#selected-users {
     color: rgba(255, 255, 255, 0.55);
   }
 }
+
+#progress-bar {
+  height: 24px;
+  widows: 100%;
+
+  & > div {
+    background-color: var(--theme-main-color);
+    height: 100%;
+    width: 1%;
+    transition: width 0.5s ease-in-out;
+  }
+}

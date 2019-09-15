@@ -4,6 +4,18 @@ declare const p: IPr0Model;
 
 export default class Comment {
 	public static post(comment: string, itemId: number, parentId: number): Promise<ICommentResponse> {
+		if ((process.env.NODE_ENV || 'development') !== 'production') {
+			console.warn('Wont post comment "', comment, '" because you are in development mode!');
+			return Promise.resolve<ICommentResponse>({
+				cache: null,
+				commentId: '42',
+				comments: [],
+				qc: 0,
+				rt: 0,
+				ts: 0,
+			});
+		}
+
 		const _nonce = p.user.id.substr(0, 16);
 		return new Promise<ICommentResponse>((resolve, reject): void => {
 			p.api.post('comments/post', {

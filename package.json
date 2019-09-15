@@ -33,6 +33,7 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "start": "webpack-dashboard -m -t \"pr0linker build\" -- webpack --mode development --watch"
+    "start": "webpack-dashboard -m -t \"pr0linker build\" -- webpack --mode development --watch",
+    "build": "webpack  --mode=production"
   }
 }

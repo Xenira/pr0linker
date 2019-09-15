@@ -9,6 +9,7 @@ import Comment from './util/comment';
 import { IPr0Model } from './util/pr0model';
 
 const addUserOverlay: string = require('./templates/add-user-overlay.html');
+const progressOverlay: string = require('./templates/linking-users-overlay.html');
 const linkUsersOverlay: string = require('./templates/link-users-overlay.html');
 const addIcon: string = require('./assets/icons/add_comment.svg');
 
@@ -88,6 +89,9 @@ export default class Comments {
 			this.populateUsersToLinkList(listsToLink);
 		});
 		$('#post-comment').click(async () => {
+			$('#overlay.pr0linker').remove();
+			$('body').append(progressOverlay);
+
 			const usersToLink: { name: string; active: boolean }[][] = this.getUsersToLink(listsToLink)
 				.filter((u) => u.active)
 				.reduce((prev, curr, i) => {
@@ -99,17 +103,22 @@ export default class Comments {
 					return prev;
 				}, []);
 
+			const totalCommentCount = usersToLink.length;
+			const progressBar = $('#progress-bar>div');
 			let comment = COMMENT_START;
 			while (usersToLink.length) {
 				const users = usersToLink.shift();
 				comment += users.reduce((prev, curr, i) => prev + (i !== 0 ? USER_SEPERATOR : '') + '@' + curr.name, '');
 				const result = await Comment.post(comment, Number(p.currentView.currentItemId), commentId);
-				console.log(result);
 				commentId = Number(result.commentId);
 				comment = '';
+
+				const percentage = 100 - (100 / totalCommentCount * usersToLink.length);
+				progressBar.width(percentage + '%');
+				await new Promise<void>((resolve): number => setTimeout(() => resolve(), 1000) as unknown as number);
 			}
 
-			console.log('post comment for', commentId, 'with users', usersToLink);
+			$('#overlay.pr0linker').remove();
 		});
 	}
 
