@@ -167,7 +167,6 @@ export default class Settings {
 			return;
 		}
 
-		console.log(username);
 		username = username.replace('@', '');
 		if (this.settings.lists[index].users.some((u) => u.handle === username)) {
 			return;

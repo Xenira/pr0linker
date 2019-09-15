@@ -64,7 +64,7 @@ module.exports = {
 				use: [{
 					loader: 'eslint-loader',
 					options: {
-						failOnWarning: true,
+						// failOnWarning: true,
 						fix: true
 					}
 				}]

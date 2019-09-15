@@ -1,19 +1,4 @@
-interface IPr0Model {
-	View: {
-		Stream: {
-			Comments: {
-				prototype: {
-					render: () => void;
-				};
-			};
-		};
-		Settings: {
-			prototype: {
-				render: () => void;
-			};
-		};
-	};
-}
+import { IPr0Model } from './pr0model';
 
 declare const p: IPr0Model;
 export const COMMENTS_EVENT_NAME = 'pr0linkerCommentsLoaded';
@@ -32,5 +17,9 @@ export default class Events {
 			originalSettingsRenderer.call(this);
 			window.dispatchEvent(new Event(SETTINGS_EVENT_NAME));
 		};
+
+		if (p.getLocation().startsWith('settings')) {
+			window.dispatchEvent(new Event(SETTINGS_EVENT_NAME));
+		}
 	}
 }

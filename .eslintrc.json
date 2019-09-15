@@ -32,7 +32,8 @@
         "@typescript-eslint/no-var-requires": [
             0
         ],
-        "@typescript-eslint/interface-name-prefix": ["error", "always"]
+        "@typescript-eslint/interface-name-prefix": ["error", "always"],
+        "no-console": "warn"
     },
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"]

@@ -2,6 +2,18 @@ a.add-to-linklist {
   padding-left: 8px;
 }
 
+.comment-foot {
+  svg {
+    height: 16px;
+    fill: #888;
+    vertical-align: middle;
+  }
+
+  svg:hover {
+    fill: var(--theme-main-color);
+  }
+}
+
 #overlay-target {
   // display: none;
   position: absolute;
@@ -15,4 +27,10 @@ a.add-to-linklist {
 
 #overlay-box.overlay-error {
   cursor: default;
+}
+
+ul#selected-users {
+  & > li.inactive {
+    color: rgba(255, 255, 255, 0.55);
+  }
 }
