@@ -14,6 +14,11 @@ export interface IPr0Model {
 				render: () => void;
 			};
 		};
+		User: {
+			prototype: {
+				render: () => void;
+			};
+		};
 	};
 	getLocation: () => string;
 	user: {
@@ -25,5 +30,10 @@ export interface IPr0Model {
 	};
 	currentView: {
 		currentItemId: string;
+		data: {
+			user: {
+				name: string;
+			};
+		};
 	};
 }

@@ -19,10 +19,9 @@ const USERS_PER_COMMENT = 10;
 const USER_SEPERATOR = ' / ';
 const COMMENT_START = 'Gewünschte verlinkungen: ';
 
-interface IUserLinkData extends DOMStringMap {
+export interface IUserLinkData extends DOMStringMap {
 	user: string;
 }
-
 
 declare const p: IPr0Model;
 export default class Comments {
@@ -49,10 +48,10 @@ export default class Comments {
 			} else {
 				const userLink = footerTemplate.replace('{{user}}', sanitize(username));
 				$(element).append(userLink);
+				$('.comment-foot .add-to-linklist').click((ev) => this.openAddDialog(ev));
 			}
 		});
 
-		$('.comment-foot .add-to-linklist').click((ev) => this.openAddDialog(ev));
 	}
 
 	openAddDialog(event: JQuery.ClickEvent<HTMLElement, null, HTMLElement, HTMLElement>): void {

@@ -1,7 +1,6 @@
 Todos: 
-	☐ Benutzer von Profilseite hinzufügen / entfernen
+	☐ Benutzer von Profilseite entfernen
 	☐ Benutzer von Kommentar entfernen
-	☐ Kommentarbutton unter OP posts von eigenem Benutzer einblenden.
 	☐ Add to new list
 	Tampermonkey:
 		☐ Valide update url einfügen
@@ -12,4 +11,5 @@ Ideen:
 	☐ Automatische Abmeldung per pn
 
 Archive:
+  ✔ Kommentarbutton unter OP posts von eigenem Benutzer einblenden. @done(19-09-15 18:51) @project(Todos)
   ✔ Selects wieder als html einbinden @done(19-09-06 17:19) @project(Todos)
