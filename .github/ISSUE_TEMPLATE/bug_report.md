@@ -3,7 +3,6 @@ name: Bug report
 about: Schrei mich an, wenn ich mal wieder scheiße gebaut hab.
 title: "[BUG]"
 labels: bug
-assignees: Xenira
 
 ---
 
