@@ -11,7 +11,7 @@ const {
 module.exports = {
 	entry: './src/index.ts',
 	output: {
-		filename: 'pr0linker.js',
+		filename: 'pr0linker.user.js',
 		path: path.resolve(__dirname, 'dist')
 	},
 	resolve: {
