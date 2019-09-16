@@ -8,7 +8,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
       - run: |
           yarn install
@@ -16,4 +15,4 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: pr0linker-build
-          path: dist/pr0linker.js
+          path: dist/pr0linker.user.js
