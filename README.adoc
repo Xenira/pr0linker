@@ -28,10 +28,10 @@ image:docu/images/settings.png[Einstellungen]
 INFO:: Um dieses Skript zu benutzen benötigst du Tampermonkey. Dieses Userscript wurde nur mit Chrome/Chromium getestet.
 
 ### Schnellinstallation
-Wenn alles richtig aufgesetzt ist sollte ein klick auf diesen Link zur installation genügen: [Nicht verfügbar in der Testphase]
+Wenn alles richtig aufgesetzt ist sollte ein klick auf diesen Link zur installation genügen: https://github.com/Xenira/pr0linker/releases/download/v0.1/pr0linker.user.js[Jetzt Installieren]
 
 ### Von den Releases
-Unter https://github.com/Xenira/pr0linker/releases können 'Offizielle' releases gefunden werden. Lade die userskript datei herrunter und kopiere ihren Inhalt in ein Tampermonkey skript.
+Unter https://github.com/Xenira/pr0linker/releases können 'Offizielle' releases gefunden werden. Klicke einfach auf das Userscript oder lade es herrunter und kopiere ihren Inhalt manuell in ein Tampermonkey skript.
 
 ### Andere Versionen
 Alle anderen Versionen können von https://github.com/Xenira/pr0linker/actions runtergeladen werden.
