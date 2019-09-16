@@ -7,6 +7,8 @@ Verlinke Benutzer automatisch unter deinen Posts auf dem pr0gramm.
 
 WARNING: Dieses Userscript ist noch in der Testphase. Fehler können auftreten.
 
+Klicke auf den Button um das Userskript zu Installieren: image:https://img.shields.io/badge/v0.1-Installieren-green[link="https://github.com/Xenira/pr0linker/releases/download/v0.1/pr0linker.user.js"]
+
 toc::[]
 
 ## Informationen
@@ -25,10 +27,10 @@ image:docu/images/settings.png[Einstellungen]
 
 
 ## Installation
-INFO:: Um dieses Skript zu benutzen benötigst du Tampermonkey. Dieses Userscript wurde nur mit Chrome/Chromium getestet.
+NOTE: Um dieses Skript zu benutzen benötigst du Tampermonkey. Dieses Userscript wurde nur mit Chrome/Chromium getestet.
 
 ### Schnellinstallation
-Wenn alles richtig aufgesetzt ist sollte ein klick auf diesen Link zur installation genügen: https://github.com/Xenira/pr0linker/releases/download/v0.1/pr0linker.user.js[Jetzt Installieren]
+Wenn alles richtig aufgesetzt ist sollte ein klick auf diesen Link zur installation genügen: image:https://img.shields.io/badge/v0.1-Installieren-green[link="https://github.com/Xenira/pr0linker/releases/download/v0.1/pr0linker.user.js"]
 
 ### Von den Releases
 Unter https://github.com/Xenira/pr0linker/releases können 'Offizielle' releases gefunden werden. Klicke einfach auf das Userscript oder lade es herrunter und kopiere ihren Inhalt manuell in ein Tampermonkey skript.
@@ -38,7 +40,7 @@ Alle anderen Versionen können von https://github.com/Xenira/pr0linker/actions r
 Stell bei der Installation sicher, dass du die Update-Url entfernst, da sich das Skript sonst selbstständig auf die neuste stabile version updated.
 
 ## Entwicklung
-INFO:: Du brauchst nodejs und yarn.
+NOTE: Du brauchst nodejs und yarn.
 
 Clone das Repository und führe die folgenden Befehle aus:
 [source,bash]
