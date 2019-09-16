@@ -8,7 +8,7 @@ export default class Comment {
 			console.warn('Wont post comment "', comment, '" because you are in development mode!');
 			return Promise.resolve<ICommentResponse>({
 				cache: null,
-				commentId: '42',
+				commentId: parentId.toString(),
 				comments: [],
 				qc: 0,
 				rt: 0,
