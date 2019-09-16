@@ -48,7 +48,9 @@ export default class Comments {
 			} else {
 				const userLink = footerTemplate.replace('{{user}}', sanitize(username));
 				$(element).append(userLink);
-				$('.comment-foot .add-to-linklist').click((ev) => this.openAddDialog(ev));
+				$('.comment-foot>a.add-to-linklist').each((_i, element) => {
+					$(element).off('click').click((ev) => this.openAddDialog(ev));
+				});
 			}
 		});
 
@@ -105,6 +107,7 @@ export default class Comments {
 			const totalCommentCount = usersToLink.length;
 			const progressBar = $('#progress-bar>div');
 			let comment = COMMENT_START;
+			let firstCommentId: number;
 			while (usersToLink.length) {
 				const users = usersToLink.shift();
 				comment += users.reduce((prev, curr, i) => prev + (i !== 0 ? USER_SEPERATOR : '') + '@' + curr.name, '');
@@ -112,12 +115,15 @@ export default class Comments {
 				commentId = Number(result.commentId);
 				comment = '';
 
+				if (!firstCommentId) {
+					firstCommentId = commentId;
+				}
+
 				const percentage = 100 - (100 / totalCommentCount * usersToLink.length);
 				progressBar.width(percentage + '%');
 				await new Promise<void>((resolve): number => setTimeout(() => resolve(), 1000) as unknown as number);
 			}
-
-			$('#overlay.pr0linker').remove();
+			window.location.href = `${p.currentView.baseURL}${p.currentView.currentItemId}:comment${firstCommentId}`;
 		});
 	}
 

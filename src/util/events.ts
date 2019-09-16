@@ -27,7 +27,7 @@ export default class Events {
 
 		if (p.getLocation().startsWith('settings/')) {
 			window.dispatchEvent(new Event(SETTINGS_EVENT_NAME));
-		} else if (p.getLocation().startsWith('user/')) {
+		} else if (/user\/\w+$/g.test(p.getLocation())) {
 			window.dispatchEvent(new Event(USER_EVENT_NAME));
 		}
 	}

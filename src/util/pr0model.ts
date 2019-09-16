@@ -35,5 +35,7 @@ export interface IPr0Model {
 				name: string;
 			};
 		};
+		tab?: string;
+		baseURL: string;
 	};
 }
