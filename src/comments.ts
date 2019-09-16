@@ -155,9 +155,18 @@ export default class Comments {
 		});
 
 		return usernames.map((name) => {
+			let active = true;
+			$(`.comment-content a[href="/user/${name}"]`).each((_i, element) => {
+				if (!active || element.textContent.toLowerCase() !== `@${name}`.toLowerCase()) {
+					return;
+				}
+
+				active = false;
+			});
+
 			return {
 				name,
-				active: $(`.comment-content a[href="/user/${name}"]`).text().toLowerCase() !== `@${name}`.toLowerCase()
+				active
 			};
 		});
 	}
