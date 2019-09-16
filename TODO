@@ -1,9 +1,3 @@
-Todos: 
-	☐ Benutzer von Profilseite entfernen
-	☐ Benutzer von Kommentar entfernen
-	☐ Add to new list
-	Tampermonkey:
-		☐ Valide update url einfügen
 
 Ideen:
 	☐ Option um Werd0lf automatisch zu verlinken
@@ -11,5 +5,9 @@ Ideen:
 	☐ Automatische Abmeldung per pn
 
 Archive:
+  ✘ Valide update url einfügen @cancelled(19-09-15 20:34) @project(Todos.Tampermonkey)
+  ✘ Benutzer von Profilseite entfernen @cancelled(19-09-15 20:28) @project(Todos)
+  ✘ Benutzer von Kommentar entfernen @cancelled(19-09-15 20:28) @project(Todos)
+  ✘ Add to new list @cancelled(19-09-15 20:24) @project(Todos)
   ✔ Kommentarbutton unter OP posts von eigenem Benutzer einblenden. @done(19-09-15 18:51) @project(Todos)
   ✔ Selects wieder als html einbinden @done(19-09-06 17:19) @project(Todos)
